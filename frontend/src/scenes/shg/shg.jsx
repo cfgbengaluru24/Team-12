@@ -187,6 +187,10 @@ function SHGListing() {
 
   const selectedData = cards.find((card) => card.id === selectedCard)?.data || [];
 
+  const handleEditShg = (id) => {
+    navigate(`/edit-shg/${id}`);
+  };
+
   return (
     <div className="App">
       <header className="header">

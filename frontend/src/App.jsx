@@ -3,7 +3,7 @@ import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import { Navbar, SideBar } from "./scenes";
 import { Outlet } from "react-router-dom";
-import { UserProvider } from "./contexts/UserContext.jsx"; // Import UserProvider
+import GoogleTranslate from "./components/GoogleTranslate"; // Adjust the path as necessary
 
 export const ToggledContext = createContext(null);
 
@@ -11,7 +11,7 @@ function App() {
   const [theme, colorMode] = useMode();
   const [toggled, setToggled] = useState(false);
   const values = { toggled, setToggled };
-  
+
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
@@ -30,6 +30,7 @@ function App() {
                 }}
               >
                 <Navbar />
+                <GoogleTranslate /> {/* Add this line */}
                 <Box sx={{ overflowY: "auto", flex: 1, maxWidth: "100%" }}>
                   <Outlet />
                 </Box>

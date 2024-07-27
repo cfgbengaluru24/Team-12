@@ -17,6 +17,12 @@ import SHGDetail from "./shgDetail/shgDetail.jsx";
 import SHGWidget from "./shg_widget/SHGWidget.jsx";
 import FundingPage from "./Donations/Donations.jsx";
 import AddShg from "./shgform/shgform.jsx";
+import QueriesList from "./follow_up/follow_up.jsx";
+import QueryDetails from "./query_detail/query_detail.jsx";
+import Trainors from "./trainorData";
+import Trainees from "./trainee";
+import AdminUpload from "./AdminUpload";
+// import shop from "./shop/shop.jsx";
 import LoginSignup from "./loginSignup/loginSignup.jsx";
 import FeedbackForm from "./feedback/Feedback.jsx"
 import Trainees from "./trainees/Trainees.jsx"
@@ -41,6 +47,11 @@ export {
   SHGWidget,
   FundingPage,
   AddShg,
+  QueriesList,
+  QueryDetails,
+  Trainors,
+  Trainees,
+  AdminUpload
   LoginSignup,
   FeedbackForm,
   Trainees,

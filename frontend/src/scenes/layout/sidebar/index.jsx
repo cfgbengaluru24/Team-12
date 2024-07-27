@@ -159,17 +159,25 @@ const SideBar = () => {
             icon={<PeopleAltOutlined />}
           />
           <Item
-            title="Trainers"
-            path="/get_trainers"
+        title="AdminUpload"
+        path="/adminupload"
+        colors={colors}
+        icon={<PersonOutlined />}
+      />
+
+          <Item
+            title="Trainors"
+            path="/trainors"
             colors={colors}
-            icon={<ContactsOutlined />}
+            icon={<PersonOutlined />}
           />
           <Item
             title="Trainees"
-            path="/get_trainees"
+            path="/trainees"
             colors={colors}
-            icon={<ReceiptOutlined />}
+            icon={<PersonOutlined />}
           />
+          
         </Menu>
         <Typography
           variant="h6"
@@ -201,7 +209,7 @@ const SideBar = () => {
             icon={<CalendarTodayOutlined />}
           />
           <Item
-            title="FAQ Page"
+            title="FAQ's Raised"
             path="/faq"
             colors={colors}
             icon={<HelpOutlineOutlined />}
@@ -219,13 +227,6 @@ const SideBar = () => {
             icon={<HelpOutlineOutlined />}
           />
         </Menu>
-        <Typography
-          variant="h6"
-          color={colors.gray[300]}
-          sx={{ m: "15px 0 5px 20px" }}
-        >
-          {!collapsed ? "Charts" : " "}
-        </Typography>
         <Menu
           menuItemStyles={{
             button: {
@@ -238,8 +239,8 @@ const SideBar = () => {
           }}
         >
           <Item
-            title="Analytics"
-            path="/get_analytics"
+            title="Follow-up"
+            path="/follow_ups"
             colors={colors}
             icon={<BarChartOutlined />}
           />
