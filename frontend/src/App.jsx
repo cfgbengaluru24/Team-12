@@ -16,7 +16,7 @@ function App() {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <UserProvider> {/* Wrap with UserProvider */}
+        {/* <UserProvider> Wrap with UserProvider */}
           <ToggledContext.Provider value={values}>
             <Box sx={{ display: "flex", height: "100vh", maxWidth: "100%" }}>
               <SideBar />
@@ -36,7 +36,7 @@ function App() {
               </Box>
             </Box>
           </ToggledContext.Provider>
-        </UserProvider>
+        {/* </UserProvider> */}
       </ThemeProvider>
     </ColorModeContext.Provider>
   );

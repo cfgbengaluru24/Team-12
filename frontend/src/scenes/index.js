@@ -17,6 +17,10 @@ import SHGDetail from "./shgDetail/shgDetail.jsx";
 import SHGWidget from "./shg_widget/SHGWidget.jsx";
 import FundingPage from "./Donations/Donations.jsx";
 import AddShg from "./shgform/shgform.jsx";
+import LoginSignup from "./loginSignup/loginSignup.jsx";
+import FeedbackForm from "./feedback/Feedback.jsx"
+import Trainees from "./trainees/Trainees.jsx"
+import LearningModule from "./learningModule/learningModule.jsx"
 export {
   Navbar,
   SideBar,
@@ -36,5 +40,9 @@ export {
   SHGDetail,
   SHGWidget,
   FundingPage,
-  AddShg
+  AddShg,
+  LoginSignup,
+  FeedbackForm,
+  Trainees,
+  LearningModule
 };

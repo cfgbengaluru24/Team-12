@@ -12,6 +12,7 @@ from django.views.decorators.http import require_POST
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 import pandas as pd
+from bson import json_util
 
 def healthcheck(request):
     if request.method == 'GET':
@@ -21,17 +22,20 @@ def healthcheck(request):
 def signup(request):
     if request.method == 'POST':
         data = json.loads(request.body)
-        username = data.get('username')
+        username = data.get('name')
         email = data.get('email')
         password = data.get('password')
-        lang = data.get('language')
+        # lang = data.get('language')
         role = data.get('role')  # Default role is 'user'
 
-        if not username or not email or not password or not lang:
+        if not username or not email or not password:
             return JsonResponse({'error': 'All fields are required'}, status=400)
 
         if db.users.find_one({'username': username}):
             return JsonResponse({'error': 'Username already exists'}, status=400)
+        
+        if db.users.find_one({'email': email}):
+            return JsonResponse({'error': 'Email already exists'}, status=400)
 
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
@@ -39,16 +43,18 @@ def signup(request):
             'username': username,
             'email': email,
             'password': hashed_password.decode('utf-8'),
-            'lang': lang,
+            # 'lang': lang,
             'role': role
         }
 
         result = db.users.insert_one(user)
         return JsonResponse({
             'message': 'User registered successfully!',
-            'username': username,
-            'role': role,
-            'id': str(result.inserted_id)
+            'user':{
+                'name': username,
+                'role': role,
+                'id': str(result.inserted_id)
+            }
         }, status=201)
     return JsonResponse({'error': 'Invalid method'}, status=405)
 
@@ -56,22 +62,24 @@ def signup(request):
 def login(request):
     if request.method == 'POST':
         data = json.loads(request.body)
-        username = data.get('username')
+        email = data.get('email')
         password = data.get('password')
 
-        if not username or not password:
+        if not email or not password:
             return JsonResponse({'error': 'All fields are required'}, status=400)
 
-        user = db.users.find_one({'username': username})
+        user = db.users.find_one({'email': email})
 
         if not user or not bcrypt.checkpw(password.encode('utf-8'), user['password'].encode('utf-8')):
             return JsonResponse({'error': 'Invalid credentials'}, status=400)
 
         return JsonResponse({
             'message': 'Login successful!',
-            'username': user['username'],
-            'role': user['role'],
-            'id': str(user['_id'])
+            'user':{
+                'name': user['username'],
+                'role': user['role'],
+                'id': str(user['_id'])
+            }  
         }, status=200)
     return JsonResponse({'error': 'Invalid method'}, status=405)
 
@@ -120,3 +128,17 @@ def import_endline(request):
         return JsonResponse({'error': str(e)}, status=500)
     finally:
         default_storage.delete(file_path)
+        
+def baseline_income(request):
+    if request.method == 'GET':
+        data = db.baseline.find({}, {'_id': 0, 'Age': 0, 'Loan Amount': 0})
+        records_list = list(data)
+        json_records = json.loads(json_util.dumps(records_list))
+        return JsonResponse(json_records, safe=False, status=200)
+    
+def baseline_loan(request):
+    if request.method == 'GET':
+        data = db.baseline.find({}, {'_id': 0, 'Age': 0, 'Business Income': 0})
+        records_list = list(data)
+        json_records = json.loads(json_util.dumps(records_list))
+        return JsonResponse(json_records, safe=False, status=200)
