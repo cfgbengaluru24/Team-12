@@ -159,17 +159,25 @@ const SideBar = () => {
             icon={<PeopleAltOutlined />}
           />
           <Item
-            title="Trainers"
-            path="/get_trainers"
+        title="AdminUpload"
+        path="/adminupload"
+        colors={colors}
+        icon={<PersonOutlined />}
+      />
+
+          <Item
+            title="Trainors"
+            path="/trainors"
             colors={colors}
-            icon={<ContactsOutlined />}
+            icon={<PersonOutlined />}
           />
           <Item
             title="Trainees"
-            path="/get_trainees"
+            path="/trainees"
             colors={colors}
-            icon={<ReceiptOutlined />}
+            icon={<PersonOutlined />}
           />
+          
         </Menu>
         <Typography
           variant="h6"

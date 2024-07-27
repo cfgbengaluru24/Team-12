@@ -19,6 +19,9 @@ import FundingPage from "./Donations/Donations.jsx";
 import AddShg from "./shgform/shgform.jsx";
 import QueriesList from "./follow_up/follow_up.jsx";
 import QueryDetails from "./query_detail/query_detail.jsx";
+import Trainors from "./trainorData";
+import Trainees from "./trainee";
+import AdminUpload from "./AdminUpload";
 // import shop from "./shop/shop.jsx";
 export {
   Navbar,
@@ -41,5 +44,8 @@ export {
   FundingPage,
   AddShg,
   QueriesList,
-  QueryDetails
+  QueryDetails,
+  Trainors,
+  Trainees,
+  AdminUpload
 };

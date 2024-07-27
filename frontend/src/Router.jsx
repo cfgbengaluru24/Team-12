@@ -20,6 +20,9 @@ import {
   AddShg,
   QueriesList,
   QueryDetails,
+  Trainors,
+  Trainees,
+  AdminUpload
 } from "./scenes";
 
 const AppRouter = () => {
@@ -45,6 +48,9 @@ const AppRouter = () => {
           <Route path="/line" element={<Line />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/geography" element={<Geography />} />
+          <Route path="/trainors" element={<Trainors />} />
+          <Route path="/trainees" element={<Trainees />} />
+          <Route path="/adminupload" element={<AdminUpload />} />
         </Route>
       </Routes>
     </Router>
