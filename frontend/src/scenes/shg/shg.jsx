@@ -23,6 +23,10 @@ const SHGListing = () => {
     fetchShgList();
   }, []);
 
+  const handleEditShg = (id) => {
+    navigate(`/edit-shg/${id}`);
+  };
+
   return (
     <div className="shg-listing">
       <div className="header">
@@ -31,7 +35,10 @@ const SHGListing = () => {
       </div>
       <div className="shg-widgets">
         {shgs.map(shg => (
-          <SHGWidget key={shg.id} shg={shg} />
+          <div key={shg.id} className="shg-widget-container">
+            <SHGWidget shg={shg} />
+            <button onClick={() => handleEditShg(shg.id)}>Edit</button>
+          </div>
         ))}
       </div>
     </div>

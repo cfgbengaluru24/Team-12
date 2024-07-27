@@ -4,14 +4,19 @@ import { ColorModeContext, useMode } from "./theme";
 import { Navbar, SideBar } from "./scenes";
 import { Outlet } from "react-router-dom";
 import { UserProvider } from "./contexts/UserContext.jsx"; // Import UserProvider
-
+// import ChatBot from 'react-simple-chatbot';
+// import {Segment} from 'semantic-ui-react';
 export const ToggledContext = createContext(null);
 
 function App() {
   const [theme, colorMode] = useMode();
   const [toggled, setToggled] = useState(false);
   const values = { toggled, setToggled };
-  
+  const [isLogin, setIsLogin] = useState(true);
+
+  const showLogin = () => setIsLogin(true);
+  const showSignup = () => setIsLogin(false);
+
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>

@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './AddShg.scss'; // Import the stylesheet
 
 const AddShg = () => {
   const [groupNo, setGroupNo] = useState('');
   const [location, setLocation] = useState('');
   const [trainer, setTrainer] = useState('');
-  const [members, setMembers] = useState([{ name: '' }]);
+  const [members, setMembers] = useState([{ name: '', income: '', loans: '', skills: '', region: '' }]);
+  const navigate = useNavigate();
 
   const handleAddMember = () => {
-    setMembers([...members, { name: '' }]);
+    setMembers([...members, { name: '', income: '', loans: '', skills: '', region: '' }]);
   };
 
   const handleMemberChange = (index, event) => {
     const newMembers = members.slice();
-    newMembers[index].name = event.target.value;
+    newMembers[index][event.target.name] = event.target.value;
     setMembers(newMembers);
   };
 
@@ -29,6 +31,9 @@ const AddShg = () => {
     };
     // Replace with actual API call to save the new SHG
     console.log(newShg);
+
+    // Redirect to SHG listing page
+    navigate('/shg-listing');
   };
 
   return (
@@ -50,8 +55,49 @@ const AddShg = () => {
         <div className="members">
           <label>Members:</label>
           {members.map((member, index) => (
-            <div key={index}>
-              <input type="text" value={member.name} onChange={(e) => handleMemberChange(index, e)} required />
+            <div key={index} className="member-form">
+              <input
+                type="text"
+                name="name"
+                value={member.name}
+                onChange={(e) => handleMemberChange(index, e)}
+                placeholder="Name"
+                required
+              />
+              <input
+                type="number"
+                name="income"
+                value={member.income}
+                onChange={(e) => handleMemberChange(index, e)}
+                placeholder="Income"
+                required
+              />
+              <input
+                type="number"
+                name="loans"
+                value={member.loans}
+                onChange={(e) => handleMemberChange(index, e)}
+                placeholder="Loans"
+                required
+              />
+              <input
+                type="number"
+                name="skills"
+                value={member.skills}
+                onChange={(e) => handleMemberChange(index, e)}
+                placeholder="Skills"
+                min="0"
+                max="100"
+                required
+              />
+              <input
+                type="text"
+                name="region"
+                value={member.region}
+                onChange={(e) => handleMemberChange(index, e)}
+                placeholder="Region"
+                required
+              />
             </div>
           ))}
           <button type="button" onClick={handleAddMember}>+ Add Member</button>

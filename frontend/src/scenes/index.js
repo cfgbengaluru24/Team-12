@@ -17,6 +17,9 @@ import SHGDetail from "./shgDetail/shgDetail.jsx";
 import SHGWidget from "./shg_widget/SHGWidget.jsx";
 import FundingPage from "./Donations/Donations.jsx";
 import AddShg from "./shgform/shgform.jsx";
+import QueriesList from "./follow_up/follow_up.jsx";
+import QueryDetails from "./query_detail/query_detail.jsx";
+// import shop from "./shop/shop.jsx";
 export {
   Navbar,
   SideBar,
@@ -36,5 +39,7 @@ export {
   SHGDetail,
   SHGWidget,
   FundingPage,
-  AddShg
+  AddShg,
+  QueriesList,
+  QueryDetails
 };

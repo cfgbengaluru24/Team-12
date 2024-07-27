@@ -201,19 +201,12 @@ const SideBar = () => {
             icon={<CalendarTodayOutlined />}
           />
           <Item
-            title="FAQ Page"
+            title="FAQ's Raised"
             path="/faq"
             colors={colors}
             icon={<HelpOutlineOutlined />}
           />
         </Menu>
-        <Typography
-          variant="h6"
-          color={colors.gray[300]}
-          sx={{ m: "15px 0 5px 20px" }}
-        >
-          {!collapsed ? "Charts" : " "}
-        </Typography>
         <Menu
           menuItemStyles={{
             button: {
@@ -226,8 +219,8 @@ const SideBar = () => {
           }}
         >
           <Item
-            title="Analytics"
-            path="/get_analytics"
+            title="Follow-up"
+            path="/follow_ups"
             colors={colors}
             icon={<BarChartOutlined />}
           />

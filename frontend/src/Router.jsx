@@ -17,7 +17,9 @@ import {
   SHGListing,
   SHGDetail,
   FundingPage,
-  AddShg
+  AddShg,
+  QueriesList,
+  QueryDetails,
 } from "./scenes";
 
 const AppRouter = () => {
@@ -30,7 +32,10 @@ const AppRouter = () => {
           <Route path="/shg/:id" element={<SHGDetail/>} />
           <Route path="/get_donations" element ={<FundingPage/>}/>
           <Route path="/add-shg" element ={<AddShg/>}/>
+          <Route path="/follow_ups" element ={<QueriesList/>}/>
+          <Route path="/query-details/:id" element={<QueryDetails/>}/>
           <Route path="/contacts" element={<Contacts />} />
+          {/* <Route path='/products' element={<Shop/>}/> */}
           <Route path="/invoices" element={<Invoices />} />
           <Route path="/form" element={<Form />} />
           <Route path="/calendar" element={<Calendar />} />
