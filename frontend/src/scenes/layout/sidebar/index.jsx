@@ -66,17 +66,17 @@ const SideBar = () => {
                 sx={{ transition: ".3s ease" }}
               >
                 <img
-                  style={{ width: "30px", height: "30px", borderRadius: "8px" }}
+                  style={{ width: "40px", height: "40px", borderRadius: "8px" }}
                   src={logo}
                   alt="Argon"
                 />
                 <Typography
-                  variant="h4"
+                  variant="h3"
                   fontWeight="bold"
                   textTransform="capitalize"
                   color={colors.greenAccent[500]}
                 >
-                  Argon
+                  BPS
                 </Typography>
               </Box>
             )}
@@ -103,14 +103,14 @@ const SideBar = () => {
           />
           <Box sx={{ textAlign: "center" }}>
             <Typography variant="h3" fontWeight="bold" color={colors.gray[100]}>
-              Tony Stark
+              Admin
             </Typography>
             <Typography
               variant="h6"
               fontWeight="500"
               color={colors.greenAccent[500]}
             >
-              VP Fancy Admin
+              Innovating with the Poor
             </Typography>
           </Box>
         </Box>
@@ -211,6 +211,18 @@ const SideBar = () => {
           <Item
             title="FAQ's Raised"
             path="/faq"
+            colors={colors}
+            icon={<HelpOutlineOutlined />}
+          />
+          <Item
+            title="Feedback Form"
+            path="/feedback"
+            colors={colors}
+            icon={<HelpOutlineOutlined />}
+          />
+          <Item
+            title="LearningModule"
+            path="/learning-module"
             colors={colors}
             icon={<HelpOutlineOutlined />}
           />

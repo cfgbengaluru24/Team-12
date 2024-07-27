@@ -23,6 +23,10 @@ import Trainors from "./trainorData";
 import Trainees from "./trainee";
 import AdminUpload from "./AdminUpload";
 // import shop from "./shop/shop.jsx";
+import LoginSignup from "./loginSignup/loginSignup.jsx";
+import FeedbackForm from "./feedback/Feedback.jsx"
+import Trainees from "./trainees/Trainees.jsx"
+import LearningModule from "./learningModule/learningModule.jsx"
 export {
   Navbar,
   SideBar,
@@ -48,4 +52,8 @@ export {
   Trainors,
   Trainees,
   AdminUpload
+  LoginSignup,
+  FeedbackForm,
+  Trainees,
+  LearningModule
 };

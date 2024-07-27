@@ -23,12 +23,17 @@ import {
   Trainors,
   Trainees,
   AdminUpload
+  LoginSignup,
+  FeedbackForm,
+  Trainees,
+  LearningModule
 } from "./scenes";
 
 const AppRouter = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/login" element={<LoginSignup />} />
         <Route path="/" element={<App />}>
           <Route path="/" element={<Dashboard />} />
           <Route path="/list_SHG's" element={<SHGListing/>}/>
@@ -51,6 +56,9 @@ const AppRouter = () => {
           <Route path="/trainors" element={<Trainors />} />
           <Route path="/trainees" element={<Trainees />} />
           <Route path="/adminupload" element={<AdminUpload />} />
+          <Route path="/feedback" element={<FeedbackForm />} />
+          <Route path="/get_trainees" element={<Trainees />} />
+          <Route path="/learning-module" element={<LearningModule />} />
         </Route>
       </Routes>
     </Router>
