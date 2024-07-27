@@ -21,8 +21,8 @@ import {
   QueriesList,
   QueryDetails,
   Trainors,
-  Trainees,
-  AdminUpload
+  TraineesAdmin,
+  AdminUpload,
   LoginSignup,
   FeedbackForm,
   Trainees,
@@ -54,7 +54,7 @@ const AppRouter = () => {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/geography" element={<Geography />} />
           <Route path="/trainors" element={<Trainors />} />
-          <Route path="/trainees" element={<Trainees />} />
+          <Route path="/trainees" element={<TraineesAdmin />} />
           <Route path="/adminupload" element={<AdminUpload />} />
           <Route path="/feedback" element={<FeedbackForm />} />
           <Route path="/get_trainees" element={<Trainees />} />

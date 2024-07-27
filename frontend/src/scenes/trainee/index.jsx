@@ -11,7 +11,7 @@ import {
 import { tokens } from "../../theme";
 import GoogleTranslate from "../../components/GoogleTranslate";
 
-const Trainees = () => {
+const TraineesAdmin = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -22,7 +22,7 @@ const Trainees = () => {
   return (
     <Box m="20px">
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="TRAINEES" subtitle="List of All the Trainees" />
+        <Header title="TRAINEES" subtitle="List of All the TraineesAdmin" />
       </Box>
       <GoogleTranslate /> {/* Add this line */}
       <Box mt="40px">
@@ -67,4 +67,4 @@ const Trainees = () => {
   );
 };
 
-export default Trainees;
+export default TraineesAdmin;

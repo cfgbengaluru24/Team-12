@@ -20,7 +20,7 @@ import AddShg from "./shgform/shgform.jsx";
 import QueriesList from "./follow_up/follow_up.jsx";
 import QueryDetails from "./query_detail/query_detail.jsx";
 import Trainors from "./trainorData";
-import Trainees from "./trainee";
+import TraineesAdmin from "./trainee";
 import AdminUpload from "./AdminUpload";
 // import shop from "./shop/shop.jsx";
 import LoginSignup from "./loginSignup/loginSignup.jsx";
@@ -50,8 +50,8 @@ export {
   QueriesList,
   QueryDetails,
   Trainors,
-  Trainees,
-  AdminUpload
+  TraineesAdmin,
+  AdminUpload,
   LoginSignup,
   FeedbackForm,
   Trainees,

@@ -209,6 +209,12 @@ const SideBar = () => {
             icon={<CalendarTodayOutlined />}
           />
           <Item
+            title="get_trainees"
+            path="/get_trainees"
+            colors={colors}
+            icon={<CalendarTodayOutlined />}
+          />
+          <Item
             title="FAQ's Raised"
             path="/faq"
             colors={colors}
