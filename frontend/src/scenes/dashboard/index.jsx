@@ -1,35 +1,21 @@
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Button,
-  IconButton,
-  Typography,
   useMediaQuery,
   useTheme,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
 } from "@mui/material";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import {
-  Header,
-  StatBox,
-  LineChart,
-  ProgressCircle,
-  BarChart,
-  GeographyChart,
-} from "../../components";
-import {
-  DownloadOutlined,
-  Email,
-  PersonAdd,
-  PointOfSale,
-  Traffic,
-} from "@mui/icons-material";
+import { PieChart, Pie, Tooltip, ResponsiveContainer } from 'recharts';
+import { DownloadOutlined, Email, PersonAdd, PointOfSale, Traffic } from "@mui/icons-material";
 import { tokens } from "../../theme";
-import { mockTransactions } from "../../data/mockData";
+import { Header, StatBox } from "../../components";
 
 function Dashboard() {
   const theme = useTheme();
@@ -38,22 +24,40 @@ function Dashboard() {
   const isMdDevices = useMediaQuery("(min-width: 724px)");
   const isXsDevices = useMediaQuery("(max-width: 436px)");
 
-  function createData(sl__no, state_ut, shgs_formed, households_mobilized) {
-    return { sl__no, state_ut, shgs_formed, households_mobilized };
-  }
+  const [rows, setRows] = useState([]);
+  const [loanData, setLoanData] = useState([]);
+  const [amountData, setAmountData] = useState([]);
 
-  const rows = [
-    createData("1", "Andhra Pradesh", 853122, 8929363),
-    createData("2", "Assam", 332315, 3707450),
-    createData("3", "Bihar", 1054925, 12200889),
-    createData("4", "Chhatisgarh", 253030, 2727056),
-    createData("5", "Gujarat", 270672, 2694386),
-    createData("6", "Jharkhand", 277850, 3446912),
-    createData("7", "Karnataka", 252285, 2989060),
-    createData("8", "Kerala", 254191, 3644669),
-    createData("9", "Madhya Pradesh", 427281, 4797967),
-    createData("10", "Maharashtra", 597697, 5950619),
-  ];
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/api/state_wise_shg') // Replace with your actual backend endpoint
+      .then(response => response.json())
+      .then(data => {
+        setRows(data.records);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+
+    fetch('http://127.0.0.1:8000/api/baseline_loan') // Replace with your actual backend endpoint for loan data
+      .then(response => response.json())
+      .then(data => {
+        const formattedLoanData = data.map(item => ({ name: item.Name, value: item['Loan Amount'] }));
+        setLoanData(formattedLoanData);
+      })
+      .catch(error => {
+        console.error('Error fetching loan data:', error);
+      });
+
+    fetch('http://127.0.0.1:8000/api/baseline_income') // Replace with your actual backend endpoint for amount data
+      .then(response => response.json())
+      .then(data => {
+        const formattedAmountData = data.map(item => ({ name: item.Name, value: item['Business Income'] }));
+        setAmountData(formattedAmountData);
+      })
+      .catch(error => {
+        console.error('Error fetching amount data:', error);
+      });
+  }, []);
 
   return (
     <Box m="20px">
@@ -106,7 +110,7 @@ function Dashboard() {
         >
           <StatBox
             title="11,361"
-            subtitle="Beneficieries"
+            subtitle="Beneficiaries"
             progress="0.75"
             increase="+14%"
             icon={
@@ -165,39 +169,89 @@ function Dashboard() {
           />
         </Box>
 
-        {/* Table Component */}
+        {/* Pie Chart */}
         <Box
-          gridColumn={isXlDevices ? "span 8" : "span 6"}
+          gridColumn={isXlDevices ? "span 4" : "span 6"}
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           p="20px"
         >
-          <TableContainer component={Paper} sx={{ height: "100%" }}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell sx={{ color: colors.greenAccent[600], fontWeight: 'bold' }}>State/UT</TableCell>
-                  <TableCell align="right" sx={{ color: colors.greenAccent[600], fontWeight: 'bold' }}>SHGs Formed</TableCell>
-                  <TableCell align="right" sx={{ color: colors.greenAccent[600], fontWeight: 'bold' }}>Households Mobilized</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.map((row) => (
-                  <TableRow
-                    key={row.sl__no}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      {row.state_ut}
-                    </TableCell>
-                    <TableCell align="right">{row.shgs_formed}</TableCell>
-                    <TableCell align="right">{row.households_mobilized}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+          <ResponsiveContainer width="100%" height="100%">
+            <div style={{ textAlign: "center" }}>Pie chart for Loans</div>
+            <PieChart>
+              <Pie
+                dataKey="value"
+                isAnimationActive={false}
+                data={loanData}
+                cx="50%"
+                cy="50%"
+                outerRadius={80}
+                fill="#8884d8"
+                label
+              />
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
         </Box>
+
+        <Box
+          gridColumn={isXlDevices ? "span 4" : "span 6"}
+          gridRow="span 2"
+          backgroundColor={colors.primary[400]}
+          p="20px"
+        >
+          <ResponsiveContainer width="100%" height="100%">
+            <div style={{ textAlign: "center" }}>Pie chart for Amounts</div>
+            <PieChart>
+              <Pie
+                dataKey="value"
+                isAnimationActive={false}
+                data={amountData}
+                cx="50%"
+                cy="50%"
+                outerRadius={80}
+                fill="#8884d8"
+                label
+              />
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
+        </Box>
+      </Box>
+
+      {/* Table Component */}
+      <Box
+        m="20px"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        height="100vh"
+      >
+        <TableContainer component={Paper} sx={{ height: "100%", backgroundColor: "white" }}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell sx={{ color: "black", fontWeight: 'bold' }}>State/UT</TableCell>
+                <TableCell align="right" sx={{ color: "black", fontWeight: 'bold' }}>SHGs Formed</TableCell>
+                <TableCell align="right" sx={{ color: "black", fontWeight: 'bold' }}>Households Mobilized</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.length && rows.map((row) => (
+                <TableRow
+                  key={row.sl_no}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row" sx={{ color: "black" }}>
+                    {row.state_ut}
+                  </TableCell>
+                  <TableCell align="right" sx={{ color: "black" }}>{row.shgs_formed}</TableCell>
+                  <TableCell align="right" sx={{ color: "black" }}>{row.households_mobilized}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Box>
     </Box>
   );

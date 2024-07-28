@@ -1,70 +1,100 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './QueriesList.scss';
+import React, { useState } from 'react'
+import '../trainees/Trainees.scss';
+// import { FaBeer } from "react-icons/fa";
+import { FaPlay } from 'react-icons/fa';
 
-const queriesData = [
-  {
-    id: 1,
-    beneficiaryName: 'John Doe',
-    raisedBy: 'John Doe',
-    shgGroupNo: 'SHG001',
-    trainerNo: 'T001',
-    query: 'Request for financial aid',
-    answered: false,
-  },
-  {
-    id: 2,
-    beneficiaryName: 'Jane Smith',
-    raisedBy: 'Jane Smith',
-    shgGroupNo: 'SHG002',
-    trainerNo: 'T002',
-    query: 'Clarification on training schedule',
-    answered: true,
-  },
-  // Add more mock queries as needed
-];
+export default function QueriesList() {
+    const [data,setdata]= useState([
+        {
+          "name": "John Doe",
+          "phone_number": "+1-555-123-4567",
+          "query": "What are the initial steps for setting up a business?"
+        },
+        {
+          "name": "Jane Smith",
+          "phone_number": "+1-555-987-6543",
+          "query": "Do I need a business license to start a small business?"
+        },
+        {
+          "name": "Emily Johnson",
+          "phone_number": "+1-555-555-5555",
+          "query": "What are the tax requirements for a new business?"
+        },
+        {
+          "name": "Michael Brown",
+          "phone_number": "+1-555-111-2222",
+          "query": "How do I register a business name?"
+        },
+        {
+          "name": "Sarah Davis",
+          "phone_number": "+1-555-333-4444",
+          "query": "What are the legal structures available for a startup?"
+        },
+        {
+          "name": "David Wilson",
+          "phone_number": "+1-555-555-6666",
+          "query": "How do I create a business plan?"
+        },
+        {
+          "name": "Laura Moore",
+          "phone_number": "+1-555-777-8888",
+          "query": "What are the funding options for new businesses?"
+        },
+        {
+          "name": "Chris Taylor",
+          "phone_number": "+1-555-999-0000",
+          "query": "What are the requirements for hiring employees?"
+        },
+        {
+          "name": "Ashley Anderson",
+          "phone_number": "+1-555-222-3333",
+          "query": "How do I choose a business location?"
+        },
+        {
+          "name": "James Thomas",
+          "phone_number": "+1-555-444-5555",
+          "query": "What insurance do I need for my business?"
+        }
+      ]
+      );
 
-const QueriesList = () => {
-  const [queries, setQueries] = useState(queriesData);
-  const navigate = useNavigate();
+  const handleCardClick = (card) => {
+    setdata(card);
+    console.log(card);
 
-  const handleRowClick = (id) => {
-    navigate(`/query-details/${id}`);
   };
 
-  return (
-    <div className="queries-list">
-      <h2>Queries Raised</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Name of Beneficiary</th>
-            <th>Query</th>
-            <th>Answered</th>
-          </tr>
-        </thead>
-        <tbody>
-          {queries.map((query) => (
-            <tr
-              key={query.id}
-              onClick={() => handleRowClick(query.id)}
-              className="query-row"
-            >
-              <td>{query.beneficiaryName}</td>
-              <td>{query.query}</td>
-              <td>
-                <input
-                  type="checkbox"
-                  checked={query.answered}
-                  readOnly
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-};
+  const cards = data.map(card => ({
+    ...card,
+  }));
 
-export default QueriesList;
+//   const selectedData = cards.find((card) => card.id === selectedCard)?.data || [];
+
+  return (
+    <div className="App" style={{backgroundColor:"black"}}>
+      <header className="header">
+        <h1> Business Queries</h1>
+      </header>
+      <div className="cards-container" >
+        {cards.map((card) => (
+          <div style={{backgroundColor:"#cfcccf"}}
+            key={card.id}
+            className="card"
+            onClick={() => handleCardClick(card)}
+          >
+        
+            <div className="card-content">
+              <h3>{card["phone_number"]}</h3>
+              <hr />
+              <h3>{card["name"]}</h3>
+              <hr />
+              <p>Query: {card["query"]}</p>
+              <hr />
+              <FaPlay style={{width:"2vh"}} />
+            </div>
+           </div>
+        ))}
+      </div>
+      </div>
+  );
+}

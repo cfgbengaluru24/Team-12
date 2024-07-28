@@ -27,6 +27,7 @@ import LoginSignup from "./loginSignup/loginSignup.jsx";
 import FeedbackForm from "./feedback/Feedback.jsx"
 import Trainees from "./trainees/Trainees.jsx"
 import LearningModule from "./learningModule/learningModule.jsx"
+import Products from "./products/Product.jsx"
 export {
   Navbar,
   SideBar,
@@ -55,5 +56,6 @@ export {
   LoginSignup,
   FeedbackForm,
   Trainees,
-  LearningModule
+  LearningModule,
+  Products
 };

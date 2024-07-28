@@ -26,13 +26,15 @@ import {
   LoginSignup,
   FeedbackForm,
   Trainees,
-  LearningModule
+  LearningModule,
+  Products
 } from "./scenes";
 
 const AppRouter = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/products" element={<Products />} />
         <Route path="/login" element={<LoginSignup />} />
         <Route path="/" element={<App />}>
           <Route path="/" element={<Dashboard />} />

@@ -202,12 +202,12 @@ const SideBar = () => {
             colors={colors}
             icon={<PersonOutlined />}
           />
-          <Item
+          {/* <Item
             title="curate_modules"
             path="/Trainer_modules"
             colors={colors}
             icon={<CalendarTodayOutlined />}
-          />
+          /> */}
           <Item
             title="get_trainees"
             path="/get_trainees"
