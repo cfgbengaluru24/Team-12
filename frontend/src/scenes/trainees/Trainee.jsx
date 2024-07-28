@@ -37,14 +37,13 @@ export default function Trainee(props) {
                     </div>
                     <img src={trainee_image1} />
                 </div>
-                <div className='details'>
+                <div className='details' style={{border:"1px solid black"}}>
                     <p>Name: {props.name}</p>
                     <p>Position: {props.position}</p>
                     <p>Employee ID: {props.id}</p>
                     <p>Email: {props.email}</p>
                     <p>Phone Number: {props.number}</p>
                     <p>Hire Date: {props.date}</p>
-                    <p>Office Location:{props.location}</p>
                 </div>
                 <div className='header'>
                     <ProgressBar steps={steps} currentStep={props.currentStep} />
